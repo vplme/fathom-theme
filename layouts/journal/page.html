@@ -1,0 +1,29 @@
+{{ define "main" }}
+{{ $author := "" }}
+{{ with .Params.author }}{{ $author = site.GetPage (printf "/people/%s" .) }}{{ end }}
+{{ $accent := .Params.accent }}
+{{ if not $accent }}{{ with $author }}{{ $accent = .Params.accent }}{{ end }}{{ end }}
+{{ $authorName := "" }}{{ with $author }}{{ $authorName = .Title }}{{ end }}
+<div class="backbar">
+  <a href="{{ .Parent.RelPermalink }}" class="mono">← journal/</a>
+</div>
+<header class="post-header acc-{{ $accent | default "green" }}">
+  {{ with .Params.category }}<span class="badge-outline mono">{{ . }}</span>{{ end }}
+  <h1>{{ .Title }}</h1>
+  <p class="mono post-meta">{{ .Date.Format "02 Jan 2006" }}{{ with $authorName }} · {{ . }}{{ end }} · {{ .ReadingTime }} min</p>
+</header>
+{{ partial "thumb.html" (dict "page" . "label" "header image" "class" "r-banner") }}
+<div class="post-body">
+  {{ .Content }}
+</div>
+{{ with $author }}
+<a href="{{ .RelPermalink }}" class="author-card">
+  {{ $avatar := "" }}{{ with .Resources }}{{ $avatar = .GetMatch "{cover,thumb}*" }}{{ end }}
+  {{ with $avatar }}<img class="avatar" src="{{ .RelPermalink }}" alt="{{ $.Title }}">{{ else }}<div class="ph avatar"></div>{{ end }}
+  <div class="author-meta">
+    <span class="author-name">Written by {{ .Title }}</span>
+    <span class="mono author-role">{{ .Params.role }}</span>
+  </div>
+</a>
+{{ end }}
+{{ end }}

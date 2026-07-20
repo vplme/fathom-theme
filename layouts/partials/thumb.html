@@ -1,0 +1,14 @@
+{{- /*
+  Renders a page's cover image if its bundle has one (cover.* or thumb.*),
+  otherwise the theme's striped placeholder.
+  Args: page, label ("photo", "project shot", …), class (r-square | r-wide | r-banner)
+*/ -}}
+{{- $label := .label | default "image" -}}
+{{- $class := .class | default "r-wide" -}}
+{{- $img := "" -}}
+{{- with .page }}{{ with .Resources }}{{ $img = .GetMatch "{cover,thumb}*" }}{{ end }}{{ end -}}
+{{- with $img -}}
+<img class="thumb {{ $class }}" src="{{ .RelPermalink }}" alt="{{ $label }}" loading="lazy">
+{{- else -}}
+<div class="ph {{ $class }}"><span class="mono">{{ $label }}</span></div>
+{{- end -}}

@@ -1,0 +1,16 @@
+{{ define "main" }}
+<header class="section-hero">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="mono">{{ . }}</p>{{ end }}
+</header>
+{{ range .RegularPages }}
+<a href="{{ .RelPermalink }}" class="post-row">
+  <span class="mono post-date">{{ .Date.Format "02 Jan 2006" }}</span>
+  <div class="post-main">
+    <span class="post-title">{{ .Title }}</span>
+    {{ with .Description }}<p class="post-excerpt">{{ . }}</p>{{ end }}
+  </div>
+  <span class="mono post-read"></span>
+</a>
+{{ end }}
+{{ end }}

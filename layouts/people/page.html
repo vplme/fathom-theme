@@ -1,0 +1,39 @@
+{{ define "main" }}
+{{ $accent := .Params.accent | default "green" }}
+<div class="backbar">
+  <a href="{{ site.Home.RelPermalink }}" class="mono">← people/</a>
+</div>
+<div class="person-hero acc-{{ $accent }}">
+  <div class="person-side">
+    {{ partial "thumb.html" (dict "page" . "label" "photo" "class" "r-square") }}
+    <div class="mono contact">
+      <span class="contact-label">contact/</span>
+      {{ with .Params.email }}<span>↳ {{ . }}</span>{{ end }}
+      {{ with .Params.handle }}<span>↳ {{ . }}</span>{{ end }}
+      {{ with .Params.website }}<span>↳ {{ . }}</span>{{ end }}
+    </div>
+  </div>
+  <div class="person-main">
+    <span class="badge mono">{{ .Params.role }}</span>
+    <h1>{{ .Title }}</h1>
+    <div class="person-longbio">{{ .Content }}</div>
+  </div>
+</div>
+{{ $key := path.BaseName .File.ContentBaseName }}
+{{ $work := where (where site.RegularPages "Section" "showcase") "Params.person" $key }}
+{{ with $work }}
+<div class="section-label mono">selected-work/</div>
+<div class="grid grid-2">
+  {{ range . }}
+  <div class="cell mini-work acc-{{ .Params.accent | default "green" }}">
+    {{ partial "thumb.html" (dict "page" . "label" "project shot" "class" "r-wide") }}
+    <div class="row-between">
+      <span class="mini-title">{{ .Title }}</span>
+      <span class="mono accent-text">{{ .Params.year }}</span>
+    </div>
+    <p class="mono work-meta">{{ .Params.type }}</p>
+  </div>
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}

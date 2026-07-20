@@ -1,0 +1,21 @@
+{{ define "main" }}
+<header class="section-hero">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="mono">{{ . }}</p>{{ end }}
+</header>
+{{ range .RegularPages }}
+{{ $accent := .Params.accent }}
+{{ if not $accent }}{{ with .Params.author }}{{ with site.GetPage (printf "/people/%s" .) }}{{ $accent = .Params.accent }}{{ end }}{{ end }}{{ end }}
+<a href="{{ .RelPermalink }}" class="post-row acc-{{ $accent | default "green" }}">
+  <span class="mono post-date">{{ .Date.Format "02 Jan 2006" }}</span>
+  <div class="post-main">
+    <div class="post-head">
+      {{ with .Params.category }}<span class="badge-outline mono">{{ . }}</span>{{ end }}
+      <span class="post-title">{{ .Title }}</span>
+    </div>
+    <p class="post-excerpt">{{ .Description | default (.Summary | plainify) }}</p>
+  </div>
+  <span class="mono post-read">{{ .ReadingTime }} min</span>
+</a>
+{{ end }}
+{{ end }}

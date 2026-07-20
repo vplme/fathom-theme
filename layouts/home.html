@@ -1,0 +1,45 @@
+{{ define "main" }}
+<section class="hero">
+  <h1>{{ .Params.heading | default .Title }}</h1>
+  {{ with site.Params.availability }}<p class="mono tagline">{{ . }}</p>{{ end }}
+</section>
+
+{{ $people := where site.RegularPages "Section" "people" }}
+{{ with $people }}
+<div class="section-label mono">people/</div>
+<div class="grid grid-3">
+  {{ range . }}
+  <a href="{{ .RelPermalink }}" class="cell person-card acc-{{ .Params.accent | default "green" }}">
+    {{ partial "thumb.html" (dict "page" . "label" "photo" "class" "r-square") }}
+    <div class="person-card-body">
+      <span class="badge mono">{{ .Params.role }}</span>
+      <span class="person-name">{{ .Title }}</span>
+      <p class="person-bio">{{ .Params.bio }}</p>
+    </div>
+    <div class="mono person-links">
+      {{ with .Params.email }}<span>↳ {{ . }}</span>{{ end }}
+      {{ with .Params.handle }}<span>↳ {{ . }}</span>{{ end }}
+    </div>
+  </a>
+  {{ end }}
+</div>
+{{ end }}
+
+{{ $showcase := site.GetPage "/showcase" }}
+{{ $featured := first 2 (where site.RegularPages "Section" "showcase") }}
+{{ with $featured }}
+<div class="section-label mono">recent-work/</div>
+<div class="grid grid-2">
+  {{ range . }}
+  <a href="{{ with $showcase }}{{ .RelPermalink }}{{ end }}" class="cell work-card acc-{{ .Params.accent | default "green" }}">
+    {{ partial "thumb.html" (dict "page" . "label" "project shot" "class" "r-wide") }}
+    <div class="row-between">
+      <span class="work-title">{{ .Title }}</span>
+      <span class="mono accent-text">{{ .Params.type }}</span>
+    </div>
+    <p class="mono work-meta">{{ .Params.client }} · {{ .Params.year }}</p>
+  </a>
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}
