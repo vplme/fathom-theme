@@ -2,7 +2,7 @@
 title: "Signal"
 client: "Cadence Health"
 year: 2026
-type: "Product"
+category: "Product"
 accent: "green"
 person: "maya"
 weight: 5

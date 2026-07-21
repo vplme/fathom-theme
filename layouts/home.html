@@ -25,17 +25,16 @@
 </div>
 {{ end }}
 
-{{ $showcase := site.GetPage "/showcase" }}
 {{ $featured := first 2 (where site.RegularPages "Section" "showcase") }}
 {{ with $featured }}
 <div class="section-label mono">recent-work/</div>
 <div class="grid grid-2">
   {{ range . }}
-  <a href="{{ with $showcase }}{{ .RelPermalink }}{{ end }}" class="cell work-card acc-{{ .Params.accent | default "green" }}">
+  <a href="{{ .RelPermalink }}" class="cell work-card acc-{{ .Params.accent | default "green" }}">
     {{ partial "thumb.html" (dict "page" . "label" "project shot" "class" "r-wide") }}
     <div class="row-between">
       <span class="work-title">{{ .Title }}</span>
-      <span class="mono accent-text">{{ .Params.type }}</span>
+      <span class="mono accent-text">{{ or .Params.category .Params.type }}</span>
     </div>
     <p class="mono work-meta">{{ .Params.client }} · {{ .Params.year }}</p>
   </a>

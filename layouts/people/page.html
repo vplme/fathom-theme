@@ -26,14 +26,14 @@
 <div class="section-label mono">selected-work/</div>
 <div class="grid grid-2">
   {{ range . }}
-  <div class="cell mini-work acc-{{ .Params.accent | default "green" }}">
+  <a href="{{ .RelPermalink }}" class="cell mini-work acc-{{ .Params.accent | default "green" }}">
     {{ partial "thumb.html" (dict "page" . "label" "project shot" "class" "r-wide") }}
     <div class="row-between">
       <span class="mini-title">{{ .Title }}</span>
       <span class="mono accent-text">{{ .Params.year }}</span>
     </div>
-    <p class="mono work-meta">{{ .Params.type }}</p>
-  </div>
+    <p class="mono work-meta">{{ or .Params.category .Params.type }}</p>
+  </a>
   {{ end }}
 </div>
 {{ end }}

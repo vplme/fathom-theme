@@ -207,11 +207,27 @@ img.r-banner { border-radius: 0; }
 .work-meta { margin: 0; font-size: 11px; color: var(--muted); }
 
 /* ===== showcase ===== */
-.project-card { display: flex; flex-direction: column; gap: 14px; padding: 28px; }
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px;
+  transition: background 0.15s ease;
+}
+.project-card:hover { background: var(--tint); }
 .project-tags { display: flex; align-items: center; gap: 10px; }
 .project-client { font-size: 11px; color: var(--faint); }
 .project-title { font-size: 24px; font-weight: 600; letter-spacing: -0.015em; }
-.project-blurb p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--muted); }
+.project-blurb { margin: 0; font-size: 14px; line-height: 1.55; color: var(--muted); }
+.project-link { display: inline-block; margin-top: 14px; font-size: 12px; color: var(--accent); }
+.maker-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px 40px;
+  transition: background 0.15s ease;
+}
+.maker-card:hover { background: var(--tint); }
 
 /* ===== journal list ===== */
 .post-row {
@@ -288,7 +304,8 @@ img.r-banner { border-radius: 0; }
   transition: background 0.15s ease;
 }
 .author-card:hover { background: var(--hover); }
-.author-card .avatar {
+.author-card .avatar,
+.maker-card .avatar {
   width: 56px;
   height: 56px;
   flex: none;

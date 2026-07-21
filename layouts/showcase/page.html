@@ -1,0 +1,39 @@
+{{ define "main" }}
+{{ $accent := .Params.accent | default "green" }}
+<div class="backbar">
+  <a href="{{ .Parent.RelPermalink }}" class="mono">← showcase/</a>
+</div>
+<header class="post-header acc-{{ $accent }}">
+  {{ with (or .Params.category .Params.type) }}<span class="badge mono">{{ . }}</span>{{ end }}
+  <h1>{{ .Title }}</h1>
+  <p class="mono post-meta">{{ .Params.client }} · {{ .Params.year }}</p>
+  {{ with .Params.link }}
+  {{ $host := (urls.Parse .).Host | default . }}
+  <a href="{{ . }}" class="mono project-link" target="_blank" rel="noopener">↳ {{ $host }}</a>
+  {{ end }}
+</header>
+{{ partial "thumb.html" (dict "page" . "label" "project shot" "class" "r-banner") }}
+<div class="post-body">
+  {{ .Content }}
+</div>
+{{ $keys := .Params.people | default (slice) }}
+{{ with .Params.person }}{{ $keys = $keys | append . }}{{ end }}
+{{ $makers := slice }}
+{{ range $keys }}{{ with site.GetPage (printf "/people/%s" .) }}{{ $makers = $makers | append . }}{{ end }}{{ end }}
+{{ with $makers }}
+<div class="section-label mono">made-by/</div>
+<div class="grid grid-2">
+  {{ range . }}
+  {{ $p := . }}
+  <a href="{{ .RelPermalink }}" class="cell maker-card acc-{{ .Params.accent | default "green" }}">
+    {{ $avatar := "" }}{{ with .Resources }}{{ $avatar = .GetMatch "{cover,thumb}*" }}{{ end }}
+    {{ with $avatar }}<img class="thumb avatar" src="{{ .RelPermalink }}" alt="{{ $p.Title }}">{{ else }}<div class="ph avatar"></div>{{ end }}
+    <div class="author-meta">
+      <span class="author-name">{{ .Title }}</span>
+      <span class="mono author-role">{{ .Params.role }}</span>
+    </div>
+  </a>
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}

@@ -64,15 +64,20 @@ Projects (`content/showcase/*.md`):
 title: "Halo"
 client: "Meridian Bank"
 year: 2025
-type: "Product"
+category: "Product"   # don't use `type` — it's reserved by Hugo and
+                      # breaks the showcase template lookup
 accent: "blue"
 person: "lior"         # people/<key> — shown on that person's page
 # or, for projects with several makers:
 # people: ["lior", "maya"]
+description: "Card blurb. Falls back to the body's summary if omitted."
+link: "https://example.org/"   # optional live-project link on the detail page
 weight: 1              # ordering; first two appear on the home page
 ```
 
-The page body is the blurb on the showcase card.
+The page body is the project write-up on the detail page (cards link to
+it), which also shows a "made-by/" section for the project's people and
+the optional live link.
 
 Posts (`content/journal/*.md`):
 

@@ -5,15 +5,15 @@
 </header>
 <div class="grid grid-2">
   {{ range .RegularPages }}
-  <div class="cell project-card acc-{{ .Params.accent | default "green" }}">
+  <a href="{{ .RelPermalink }}" class="cell project-card acc-{{ .Params.accent | default "green" }}">
     {{ partial "thumb.html" (dict "page" . "label" "project shot" "class" "r-wide") }}
     <div class="project-tags">
-      <span class="badge mono">{{ .Params.type }}</span>
+      <span class="badge mono">{{ or .Params.category .Params.type }}</span>
       <span class="mono project-client">{{ .Params.client }} · {{ .Params.year }}</span>
     </div>
     <span class="project-title">{{ .Title }}</span>
-    <div class="project-blurb">{{ .Content }}</div>
-  </div>
+    <p class="project-blurb">{{ .Description | default (.Summary | plainify) }}</p>
+  </a>
   {{ end }}
 </div>
 {{ end }}

@@ -2,7 +2,7 @@
 title: "Tidal"
 client: "Portland Aquarium"
 year: 2024
-type: "Motion"
+category: "Motion"
 accent: "amber"
 person: "nadia"
 weight: 3

@@ -2,7 +2,7 @@
 title: "Marlow"
 client: "Self-initiated"
 year: 2023
-type: "Type"
+category: "Type"
 accent: "amber"
 person: "nadia"
 weight: 6

@@ -2,7 +2,7 @@
 title: "Kestrel"
 client: "Field Notes Co"
 year: 2025
-type: "Brand"
+category: "Brand"
 accent: "green"
 person: "maya"
 weight: 2

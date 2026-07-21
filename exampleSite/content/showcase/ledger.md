@@ -2,7 +2,7 @@
 title: "Ledger"
 client: "Owl & Oak"
 year: 2024
-type: "Web"
+category: "Web"
 accent: "blue"
 person: "lior"
 weight: 4
