@@ -12,7 +12,10 @@
   <a href="{{ . }}" class="mono project-link" target="_blank" rel="noopener">↳ {{ $host }}</a>
   {{ end }}
 </header>
-{{ partial "thumb.html" (dict "page" . "label" "project shot" "class" "r-banner") }}
+{{ $cover := "" }}{{ with .Resources }}{{ $cover = .GetMatch "{cover,thumb}*" }}{{ end }}
+{{ with $cover }}
+{{ partial "thumb.html" (dict "page" $ "label" "project shot" "class" "r-banner") }}
+{{ end }}
 <div class="post-body">
   {{ .Content }}
 </div>

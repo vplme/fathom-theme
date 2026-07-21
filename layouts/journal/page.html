@@ -12,7 +12,10 @@
   <h1>{{ .Title }}</h1>
   <p class="mono post-meta">{{ .Date.Format "02 Jan 2006" }}{{ with $authorName }} · {{ . }}{{ end }} · {{ .ReadingTime }} min</p>
 </header>
-{{ partial "thumb.html" (dict "page" . "label" "header image" "class" "r-banner") }}
+{{ $cover := "" }}{{ with .Resources }}{{ $cover = .GetMatch "{cover,thumb}*" }}{{ end }}
+{{ with $cover }}
+{{ partial "thumb.html" (dict "page" $ "label" "header image" "class" "r-banner") }}
+{{ end }}
 <div class="post-body">
   {{ .Content }}
 </div>
