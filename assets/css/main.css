@@ -289,8 +289,31 @@ img.r-banner { border-radius: 0; }
   overflow-x: auto;
   font-size: 13px;
   line-height: 1.6;
+  margin: 0 0 22px;
 }
 .post-body pre code { background: none; border: none; padding: 0; }
+.post-body .highlight { margin: 0 0 22px; }
+.post-body .highlight pre { margin: 0; }
+
+/* chroma syntax colours (requires markup.highlight.noClasses = false) */
+:root {
+  --code-key: oklch(0.52 0.16 255);
+  --code-str: oklch(0.52 0.14 150);
+  --code-lit: oklch(0.55 0.15 45);
+}
+html.dark {
+  --code-key: oklch(0.75 0.13 255);
+  --code-str: oklch(0.76 0.13 150);
+  --code-lit: oklch(0.78 0.13 60);
+}
+.chroma .c, .chroma .c1, .chroma .cm, .chroma .cs, .chroma .ch { color: var(--faint); font-style: italic; }
+.chroma .k, .chroma .kd, .chroma .kr, .chroma .kn, .chroma .kc, .chroma .kp { color: var(--code-key); }
+.chroma .kt, .chroma .nc, .chroma .nn { color: var(--code-lit); }
+.chroma .s, .chroma .s1, .chroma .s2, .chroma .sb, .chroma .sx, .chroma .sr, .chroma .se { color: var(--code-str); }
+.chroma .m, .chroma .mi, .chroma .mf, .chroma .mh, .chroma .mb, .chroma .mo { color: var(--code-lit); }
+.chroma .nf, .chroma .fm { color: var(--code-key); font-weight: 500; }
+.chroma .o, .chroma .p { color: var(--muted); }
+.chroma .nb, .chroma .bp { color: var(--code-lit); }
 .post-body img { max-width: 100%; }
 
 .author-card {
