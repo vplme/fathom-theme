@@ -9,6 +9,9 @@
     {{ with site.GetPage "/journal" }}
     <a href="{{ .RelPermalink }}" class="navpill{{ if eq $sec "journal" }} active{{ end }}">journal</a>
     {{ end }}
+    {{ range site.Menus.main }}
+    <a href="{{ .URL }}" class="navpill{{ if $.IsMenuCurrent "main" . }} active{{ end }}">{{ .Name | lower }}</a>
+    {{ end }}
     <button id="theme-toggle" class="navpill toggle" type="button" aria-label="Toggle colour theme">☾ dark</button>
   </nav>
 </header>

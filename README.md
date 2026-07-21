@@ -89,6 +89,20 @@ author: "maya"         # people/<key> — supplies name, role and accent
 description: "Excerpt shown in the journal list."
 ```
 
+### Extra pages
+
+Any other content file renders as a standalone page in the same style
+(title, optional `description` subtitle, body). Add it to the navbar by
+putting it in the `main` menu:
+
+```yaml
+title: "About"
+menus: "main"
+```
+
+Menu entries defined in site config (`[[menus.main]]`) appear too, after
+the built-in index / showcase / journal pills.
+
 ### Images
 
 Every image slot renders a striped placeholder until you provide a real one.
