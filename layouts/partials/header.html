@@ -1,5 +1,5 @@
 <header class="site-header mono">
-  <a href="{{ site.Home.RelPermalink }}" class="brand">{{ site.Params.prompt | default site.Title }} <span class="dot">●</span></a>
+  <a href="{{ site.Home.RelPermalink }}" class="brand">{{ site.Params.prompt | default site.Title }}</a>
   <nav>
     {{ $sec := .Section }}
     <a href="{{ site.Home.RelPermalink }}" class="navpill{{ if .IsHome }} active{{ end }}">index</a>

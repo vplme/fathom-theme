@@ -13,7 +13,6 @@
   --ph1: oklch(0.92 0.006 100);
   --ph2: oklch(0.955 0.004 100);
   --hover: oklch(0.975 0.004 100);
-  --dot: oklch(0.72 0.16 150);
   --link: oklch(0.72 0.16 250);
   --badge-ink: oklch(0.99 0 0);
 }
@@ -75,7 +74,6 @@ a { color: inherit; text-decoration: none; }
   font-size: 13px;
 }
 .brand { color: var(--muted); }
-.brand .dot { color: var(--dot); }
 .site-header nav { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .navpill {
   border: 1px solid var(--line);
