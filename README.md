@@ -38,6 +38,7 @@ hugo server --source exampleSite --themesDir ../..
   prompt = "~/fathom-studio"           # header label; falls back to site title
   subtitle = "// currently taking projects for Q4 2026"  # hero tagline
   # (availability is still read as a fallback for older sites)
+  shufflePeople = true   # randomize the home-page people order per visit
 ```
 
 ### Content

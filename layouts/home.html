@@ -7,7 +7,7 @@
 {{ $people := where site.RegularPages "Section" "people" }}
 {{ with $people }}
 <div class="section-label mono">people/</div>
-<div class="grid grid-{{ math.Min (len .) 3 }}">
+<div class="grid grid-{{ math.Min (len .) 3 }}"{{ if site.Params.shufflePeople }} data-shuffle{{ end }}>
   {{ range . }}
   <a href="{{ .RelPermalink }}" class="cell person-card acc-{{ .Params.accent | default "green" }}">
     {{ partial "thumb.html" (dict "page" . "label" "photo" "class" "r-square") }}
