@@ -37,6 +37,7 @@
       <span class="mono accent-text">{{ or .Params.category .Params.type }}</span>
     </div>
     <p class="mono work-meta">{{ .Params.client }} · {{ .Params.year }}</p>
+    <p class="work-blurb">{{ .Description | default (.Summary | plainify) }}</p>
   </a>
   {{ end }}
 </div>
