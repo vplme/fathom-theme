@@ -66,6 +66,8 @@ year: 2025
 type: "Product"
 accent: "blue"
 person: "lior"         # people/<key> — shown on that person's page
+# or, for projects with several makers:
+# people: ["lior", "maya"]
 weight: 1              # ordering; first two appear on the home page
 ```
 

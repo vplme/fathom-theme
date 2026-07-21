@@ -20,7 +20,8 @@
   </div>
 </div>
 {{ $key := path.BaseName .File.ContentBaseName }}
-{{ $work := where (where site.RegularPages "Section" "showcase") "Params.person" $key }}
+{{ $showcase := where site.RegularPages "Section" "showcase" }}
+{{ $work := sort (union (where $showcase "Params.person" $key) (where $showcase "Params.people" "intersect" (slice $key))) "Weight" }}
 {{ with $work }}
 <div class="section-label mono">selected-work/</div>
 <div class="grid grid-2">
