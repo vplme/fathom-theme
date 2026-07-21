@@ -1,16 +1,18 @@
 {{ define "main" }}
-{{ $author := "" }}
-{{ with .Params.author }}{{ $author = site.GetPage (printf "/people/%s" .) }}{{ end }}
+{{ $keys := .Params.authors | default (slice) }}
+{{ with .Params.author }}{{ $keys = $keys | append . }}{{ end }}
+{{ $authors := slice }}
+{{ range $keys }}{{ with site.GetPage (printf "/people/%s" .) }}{{ $authors = $authors | append . }}{{ end }}{{ end }}
 {{ $accent := .Params.accent }}
-{{ if not $accent }}{{ with $author }}{{ $accent = .Params.accent }}{{ end }}{{ end }}
-{{ $authorName := "" }}{{ with $author }}{{ $authorName = .Title }}{{ end }}
+{{ if not $accent }}{{ with index $authors 0 }}{{ $accent = .Params.accent }}{{ end }}{{ end }}
+{{ $names := slice }}{{ range $authors }}{{ $names = $names | append .Title }}{{ end }}
 <div class="backbar">
   <a href="{{ .Parent.RelPermalink }}" class="mono">← journal/</a>
 </div>
 <header class="post-header acc-{{ $accent | default "green" }}">
   {{ with .Params.category }}<span class="badge-outline mono">{{ . }}</span>{{ end }}
   <h1>{{ .Title }}</h1>
-  <p class="mono post-meta">{{ .Date.Format "02 Jan 2006" }}{{ with $authorName }} · {{ . }}{{ end }} · {{ .ReadingTime }} min</p>
+  <p class="mono post-meta">{{ .Date.Format "02 Jan 2006" }}{{ with $names }} · {{ delimit . " & " }}{{ end }} · {{ .ReadingTime }} min</p>
 </header>
 {{ $cover := "" }}{{ with .Resources }}{{ $cover = .GetMatch "{cover,thumb}*" }}{{ end }}
 {{ with $cover }}
@@ -19,7 +21,8 @@
 <div class="post-body">
   {{ .Content }}
 </div>
-{{ with $author }}
+{{ if eq (len $authors) 1 }}
+{{ with index $authors 0 }}
 <a href="{{ .RelPermalink }}" class="author-card">
   {{ $avatar := "" }}{{ with .Resources }}{{ $avatar = .GetMatch "{cover,thumb}*" }}{{ end }}
   {{ with $avatar }}<img class="avatar" src="{{ .RelPermalink }}" alt="{{ $.Title }}">{{ else }}<div class="ph avatar"></div>{{ end }}
@@ -28,5 +31,21 @@
     <span class="mono author-role">{{ .Params.role }}</span>
   </div>
 </a>
+{{ end }}
+{{ else if gt (len $authors) 1 }}
+<div class="section-label mono">written-by/</div>
+<div class="grid grid-2">
+  {{ range $authors }}
+  {{ $p := . }}
+  <a href="{{ .RelPermalink }}" class="cell maker-card acc-{{ .Params.accent | default "green" }}">
+    {{ $avatar := "" }}{{ with .Resources }}{{ $avatar = .GetMatch "{cover,thumb}*" }}{{ end }}
+    {{ with $avatar }}<img class="thumb avatar" src="{{ .RelPermalink }}" alt="{{ $p.Title }}">{{ else }}<div class="ph avatar"></div>{{ end }}
+    <div class="author-meta">
+      <span class="author-name">{{ .Title }}</span>
+      <span class="mono author-role">{{ .Params.role }}</span>
+    </div>
+  </a>
+  {{ end }}
+</div>
 {{ end }}
 {{ end }}

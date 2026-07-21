@@ -5,7 +5,10 @@
 </header>
 {{ range .RegularPages }}
 {{ $accent := .Params.accent }}
-{{ if not $accent }}{{ with .Params.author }}{{ with site.GetPage (printf "/people/%s" .) }}{{ $accent = .Params.accent }}{{ end }}{{ end }}{{ end }}
+{{ if not $accent }}
+{{ $k := .Params.author | default (index (.Params.authors | default (slice)) 0) }}
+{{ with $k }}{{ with site.GetPage (printf "/people/%s" .) }}{{ $accent = .Params.accent }}{{ end }}{{ end }}
+{{ end }}
 <a href="{{ .RelPermalink }}" class="post-row acc-{{ $accent | default "green" }}">
   <span class="mono post-date">{{ .Date.Format "02 Jan 2006" }}</span>
   <div class="post-main">

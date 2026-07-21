@@ -86,6 +86,8 @@ title: "Designing calm software"
 date: 2026-06-12
 category: "Essay"
 author: "maya"         # people/<key> — supplies name, role and accent
+# or, for co-written posts:
+# authors: ["maya", "lior"]
 description: "Excerpt shown in the journal list."
 ```
 
