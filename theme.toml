@@ -1,0 +1,12 @@
+name = "Fathom"
+license = "MIT"
+licenselink = "https://github.com/vplme/fathom-theme/blob/main/LICENSE"
+description = "A terminal-flavoured portfolio theme for small studios — people, showcase and journal sections, oklch colour system, light/dark toggle."
+homepage = "https://github.com/vplme/fathom-theme"
+demosite = ""
+tags = ["portfolio", "blog", "minimal", "dark mode", "studio"]
+features = ["dark mode", "portfolio", "blog", "responsive"]
+min_version = "0.146.0"
+
+[author]
+  name = "vpl"

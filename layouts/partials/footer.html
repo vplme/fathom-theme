@@ -1,0 +1,4 @@
+<footer class="site-footer mono">
+  <span>© {{ site.Title }} {{ now.Year }}</span>
+  <span>Built with Hugo{{ with site.GetPage "/journal" }} · <a href="{{ .RelPermalink }}" class="footer-link">journal</a>{{ end }}{{ with site.GetPage "/showcase" }} · <a href="{{ .RelPermalink }}" class="footer-link">showcase</a>{{ end }}</span>
+</footer>

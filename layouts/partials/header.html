@@ -1,0 +1,14 @@
+<header class="site-header mono">
+  <a href="{{ site.Home.RelPermalink }}" class="brand">{{ site.Params.prompt | default site.Title }} <span class="dot">●</span></a>
+  <nav>
+    {{ $sec := .Section }}
+    <a href="{{ site.Home.RelPermalink }}" class="navpill{{ if .IsHome }} active{{ end }}">index</a>
+    {{ with site.GetPage "/showcase" }}
+    <a href="{{ .RelPermalink }}" class="navpill{{ if or (eq $sec "showcase") (eq $sec "people") }} active{{ end }}">showcase</a>
+    {{ end }}
+    {{ with site.GetPage "/journal" }}
+    <a href="{{ .RelPermalink }}" class="navpill{{ if eq $sec "journal" }} active{{ end }}">journal</a>
+    {{ end }}
+    <button id="theme-toggle" class="navpill toggle" type="button" aria-label="Toggle colour theme">☾ dark</button>
+  </nav>
+</header>
