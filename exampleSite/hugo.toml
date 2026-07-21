@@ -8,4 +8,4 @@ disableKinds = ["taxonomy", "term"]
 [params]
   description = "We build, brand and animate. Three people, one workshop."
   prompt = "~/fathom-studio"
-  availability = "// currently taking projects for Q4 2026"
+  subtitle = "// currently taking projects for Q4 2026"
